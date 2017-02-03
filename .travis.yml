@@ -6,5 +6,4 @@ install:
   - curl -u$ARTIFACTIRY_USERNAME:$ARTIFACTORY_PASSWORD https://gcartifactory-us.jfrog.info/artifactory/api/npm/auth >> ~/.npmrc
   - cat ~/.npmrc
   - npm install
-deploy:
   - npm publish --registry https://gcartifactory-us.jfrog.info/artifactory/api/npm/travisci-npm
