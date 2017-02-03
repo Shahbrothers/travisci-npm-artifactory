@@ -1,6 +1,6 @@
 {
   "name": "travisci-npm-artifactory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "example of using Travis' deploy feature to publish to npm package to Artifactory.",
   "main": "index.js",
   "directories": {
