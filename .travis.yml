@@ -1,10 +1,9 @@
 sudo: required
 node_js:
   - "0.12"
-before_install:
+install:
   - npm config set registry https://gcartifactory-us.jfrog.info/artifactory/api/npm/travisci-npm
   - curl -u$ARTIFACTIRY_USERNAME:$ARTIFACTORY_PASSWORD https://gcartifactory-us.jfrog.info/artifactory/api/npm/auth >> ~/.npmrc
-install:
   - npm install
 script:
   - npm publish --registry https://gcartifactory-us.jfrog.info/artifactory/api/npm/travisci-npm
