@@ -1,4 +1,4 @@
-# circleci-npm-artifactory
+# TravisCI-npm-artifactory
 
 [![Build Status](https://travis-ci.org/jainishshah17/travisci-npm-artifactory.svg?branch=master)](https://travis-ci.org/jainishshah17/travisci-npm-artifactory)
 ## Artifactory Integration with Travis Ci
