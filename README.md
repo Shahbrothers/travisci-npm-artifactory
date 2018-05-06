@@ -20,9 +20,26 @@ Enable your project in Travis CI .
 
 Step 3:
 
-add Environment Variables ARTIFACTORY_USERNAME and ARTIFACTORY_PASSWORD in build settings of travis-ci.
+add Environment Variables **ARTIFACTORY_URL**, **ARTIFACTORY_USER** and **ARTIFACTORY_PASSWORD**, **NPM_DEV_REPO**, **NPM_STAGE_REPO**  and **NPM_PROD_REPO** in Repository Settings -> PIPELINES -> Environments Variables.
+```   
+ARTIFACTORY_URL ->  Artifactory URL 
+e.g  ARTIFACTORY_URL -> https://mycompany.jforg.io/mycompany
 
-![screenshot](img/Screen_Shot2.png)
+ARTIFACTORY_USER -> Artifactory User which has permission to deploy artifacts.
+e.g ARTIFACTORY_USER -> admin
+
+ARTIFACTORY_PASSWORD -> Password for Artifactory User.
+e.g ARTIFACTORY_PASSWORD -> password
+ 
+NPM_DEV_REPO -> Artifactory NPM registry to download and push Artifacts.
+e.g NPM_DEV_REPO -> npm-virtual 
+ 
+NPM_STAGE_REPO -> Artifactory NPM registry to download and push Artifacts.
+e.g NPM_STAGE_REPO -> npm-stage-local
+
+NPM_PROD_REPO -> Artifactory NPM registry to download and push Artifacts.
+e.g NPM_PROD_REPO -> npm-prod-local
+```
 
 Step 4:
 

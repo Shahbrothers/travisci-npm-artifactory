@@ -3,7 +3,19 @@ language: node_js
 node_js:
   - "6"
 install:
-  - npm install
-  - npm config set registry https://gcartifactory-us.jfrog.info/artifactory/api/npm/travisci-npm
-  - curl -u$ARTIFACTIRY_USERNAME:$ARTIFACTORY_PASSWORD https://gcartifactory-us.jfrog.info/artifactory/api/npm/auth >> ~/.npmrc
-  - npm publish --registry https://gcartifactory-us.jfrog.info/artifactory/api/npm/travisci-npm
+  # Install JFrog CLI
+  - curl -fL https://getcli.jfrog.io | sh
+  # Configure Artifactory instance with JFrog CLI
+  - ./jfrog rt config artifactory --url $ARTIFACTORY_URL --user $ARTIFACTORY_USER --password $ARTIFACTORY_PASSWORD --interactive false
+  # Run NPM install command to pull dependency from Artifactory NPM registry
+  - ./jfrog rt npmi $NPM_DEV_REPO --build-name=travisci-npm-artifactory --build-number=$TRAVIS_BUILD_NUMBER
+  # Run NPM publish command to publish created NPM package to Artifactory NPM registry
+  - ./jfrog rt npmp $NPM_DEV_REPO --build-name=travisci-npm-artifactory --build-number=$TRAVIS_BUILD_NUMBER
+  # Collect the environment variables
+  - ./jfrog rt bce travisci-npm-artifactory $TRAVIS_BUILD_NUMBER
+  # Publish build information to Artifactory using JFrog CLI
+  - ./jfrog rt bp travisci-npm-artifactory $TRAVIS_BUILD_NUMBER
+  # Promote npm package to staging repo
+  - ./jfrog rt bpr travisci-npm-artifactory $TRAVIS_BUILD_NUMBER $NPM_STAGE_REPO --status="Staged" --copy=true
+  # Promote npm package to production repo
+  - ./jfrog rt bpr travisci-npm-artifactory $TRAVIS_BUILD_NUMBER $NPM_PROD_REPO --status="Promoted to Prod" --copy=true
