@@ -14,9 +14,7 @@ copy ```.travis.yml``` file to your project.
 
 Step 2: 
 
-Enable your project in Travis CI .
-
-![screenshot](img/Screen_Shot1.png)
+Enable your project in [Travis CI](https://travis-ci.org/) .
 
 Step 3:
 
